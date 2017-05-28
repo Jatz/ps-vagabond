@@ -22,6 +22,8 @@ tns_admin_list:
     db_protocol:     TCP
     db_service_name: "%{hiera('db_service_name')}"
 
+# ps_config_home:   "%{hiera('peoplesoft_base')}/cfg"
+
 db_connect_id:     "people"
 db_connect_pwd:    "peop1e"
 
