@@ -9,21 +9,23 @@
 #                              Required Settings                               #
 ################################################################################
 
-db_name:     "PSFTDB"
-db_port:     1522
-db_user:     "PS"
-db_user_pwd: "PS"
+db_name:           "PSFTDB"
+db_port:           1522
 
-db_service_name: "PSFTDB"
-tns_admin_list:
-  "%{hiera('db_name')}":
-    db_host:         "%{::fqdn}"
-    db_port:         "%{hiera('db_port')}"
-    db_protocol:     TCP
-    db_service_name: "%{hiera('db_service_name')}"
-
+db_user:           "PS"
+db_user_pwd:       "PS"
 db_connect_id:     "people"
 db_connect_pwd:    "peop1e"
+
+# Windows: Uncomment line to move PS_CFG_HOME out of the c:\user folder
+# ps_config_home:    "%{hiera('peoplesoft_base')}/cfg"
+
+tns_admin_list:
+  "%{hiera('db_name')}":
+    db_host:         "%{::hostname}"
+    db_port:         "%{hiera('db_port')}"
+    db_protocol:     TCP
+    db_service_name: "%{hiera('db_name')}"
 
 pia_domain_list:
   "%{hiera('pia_domain_name')}":
@@ -48,5 +50,3 @@ pia_domain_list:
           profile_user:        "PTWEBSERVER"
           profile_user_pwd:    "PTWEBSERVER"
         report_repository_dir: "%{hiera('report_repository_dir')}"
-
-#domain_conn_pwd:
